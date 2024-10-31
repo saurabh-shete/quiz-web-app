@@ -1,22 +1,34 @@
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 5000;
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import { config } from "dotenv";
+import router from "./routes/route.js";
+import connect from "./database/db.js";
 
+const app = express();
+
+// Initialize dotenv
+config(); 
+
+// Middleware
+app.use(morgan("tiny"));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// Mock API routes
-app.post("/api/quiz/start", (req, res) => {
-  res.json({ message: "Quiz started", quizId: 1 });
+// Server port
+const port = process.env.PORT || 8080;
+
+// Connect to MongoDB and start the server
+connect().then(() => {
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}).catch((error) => {
+    console.log("Invalid database connection:", error);
 });
 
-app.post("/api/quiz/submit", (req, res) => {
-  res.json({ message: "Response submitted", questionId: req.body.questionId });
-});
-
-app.post("/api/quiz/finish", (req, res) => {
-  res.json({ message: "Quiz finished", score: 8 });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Routes
+app.use("/api", router);
+app.get("/", (req, res) => {
+    res.json("Welcome to the Quiz API");
 });
