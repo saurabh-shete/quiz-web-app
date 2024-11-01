@@ -18,9 +18,10 @@ export const useFetchQuestion = () => {
         ;(async () => {
             try {
                 const response = await getServerData(
-                    `${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`,
+                    `${import.meta.env.VITE_SERVER_HOSTNAME}/api/questions`,
                     data => data
                 )
+                
 
                 const { questions, answers } = response[0] || {}
 
