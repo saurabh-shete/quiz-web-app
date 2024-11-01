@@ -6,7 +6,12 @@ import { resetResultAction } from '../redux/reducer/result'
 
 export default function Result() {
     const dispatch = useDispatch()
-    const { questions: { queue, answers }, result: { result, userId } } = useSelector(state => state)
+    
+    const queue = useSelector(state => state.questions.queue)
+    const answers = useSelector(state => state.questions.answers)
+    const result = useSelector(state => state.result.result)
+    const userId = useSelector(state => state.result.userId)
+
     const totalPoints = queue.length * 10
     const attempts = result.filter(r => r !== undefined).length
     const earnedPoints = result.map((res, i) => answers[i] === res).filter(i => i).length * 10
