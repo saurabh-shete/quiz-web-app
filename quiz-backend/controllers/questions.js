@@ -1,5 +1,4 @@
 import Questions from "../models/question.js";
-import Results from "../models/result.js";
 
 // GET all questions
 export async function getQuestions(req, res) {
@@ -22,24 +21,34 @@ export async function addQuestions(req, res) {
     }
 }
 
-// GET score results
-export async function getScore(req, res) {
-    try {
-        const results = await Results.find();
-        res.json(results);
-    } catch (error) {
-        res.status(500).json({ error: "Error retrieving scores" });
-    }
-}
-
-// POST new score
+// POST score without storing in the database
 export async function saveScore(req, res) {
     try {
-        const { username, result, attempts, points, achieved } = req.body;
-        if (!username || !result) throw new Error("Invalid data provided");
+        const { username, userAnswers } = req.body;
+        if (!username || !userAnswers) throw new Error("Invalid data provided");
 
-        await Results.create({ username, result, attempts, points, achieved });
-        res.json({ msg: "Score saved successfully!" });
+        // Fetch the correct answers from the database
+        const questions = await Questions.findOne();
+        if (!questions) throw new Error("No questions found");
+        
+        const correctAnswers = questions.answers;
+
+        // Calculate score
+        const totalPoints = correctAnswers.length * 10;
+        const attempts = userAnswers.filter(answer => answer !== undefined).length;
+        const earnedPoints = userAnswers
+            .map((answer, index) => answer === correctAnswers[index])
+            .filter(correct => correct)
+            .length * 10;
+        const achieved = earnedPoints >= totalPoints * 0.5 ? "Passed" : "Failed";
+
+        // Send score calculation back to the frontend
+        res.json({
+            totalPoints,
+            attempts,
+            earnedPoints,
+            achieved
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
