@@ -19,11 +19,9 @@ export const updateResult = (index) => async (dispatch) => {
 
 
 
-// fetchScore function to save and retrieve the score from the backend
-export const fetchScore = async (username, userAnswers) => {
+export const fetchScore = async (userAnswers) => {
     try {
         const response = await axios.post(`${import.meta.env.VITE_SERVER_HOSTNAME}/api/score`, {
-            username,
             userAnswers
         });
         return response.data;
@@ -32,4 +30,3 @@ export const fetchScore = async (username, userAnswers) => {
         return { error: "Failed to calculate score" };
     }
 };
-

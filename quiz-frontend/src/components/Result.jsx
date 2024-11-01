@@ -7,19 +7,17 @@ import { fetchScore } from '../hooks/setResult'
 
 export default function Result() {
     const dispatch = useDispatch()
-    
-    const userId = useSelector(state => state.result.userId)
     const result = useSelector(state => state.result.result)
 
     const [scoreData, setScoreData] = useState(null)
 
     useEffect(() => {
         const calculateScore = async () => {
-            const data = await fetchScore(userId, result)
+            const data = await fetchScore(result) // No username, just result data
             setScoreData(data)
         }
         calculateScore()
-    }, [userId, result])
+    }, [result])
 
     function onRestart() {
         dispatch(resetAllAction())
