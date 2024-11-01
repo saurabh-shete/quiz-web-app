@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import questionReducer from './reducer/question'
-import resultReducer from './result_reducer'
+import resultReducer from './reducer/result'
 
 const store = configureStore({
     reducer: {

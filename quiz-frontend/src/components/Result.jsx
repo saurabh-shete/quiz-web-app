@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetAllAction } from '../redux/reducer/question'
-import { resetResultAction } from '../redux/result_reducer'
+import { resetResultAction } from '../redux/reducer/result'
 
 export default function Result() {
     const dispatch = useDispatch()

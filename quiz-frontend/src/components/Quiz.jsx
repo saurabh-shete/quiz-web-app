@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Questions from './Questions'
-import { MoveNextQuestion, MovePrevQuestion } from '../hooks/FetchQuestion'
+import { MoveNextQuestion, MovePrevQuestion } from '../hooks/fetchQuestion'
 import { PushAnswer } from '../hooks/setResult'
 import { useSelector, useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
