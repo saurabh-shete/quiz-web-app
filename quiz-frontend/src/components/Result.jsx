@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetAllAction } from '../redux/question_reducer'
+import { resetAllAction } from '../redux/reducer/question'
 import { resetResultAction } from '../redux/result_reducer'
 
 export default function Result() {
