@@ -18,7 +18,7 @@ export default function Quiz() {
                 dispatch(PushAnswer(check))
             }
         }
-        setChecked(undefined)
+        setChecked(undefined) // Reset selected option
     }
 
     function onPrev() {
@@ -30,14 +30,22 @@ export default function Quiz() {
     function onChecked(check) {
         setChecked(check)
     }
-    console.log(result.length, queue.length);
+
+    function handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.preventDefault()
+            onNext()
+        }
+    }
+
+    console.log(result.length, queue.length)
     
     if (queue.length && result.length >= queue.length) {
         return <Navigate to={'/result'} replace={true} />
     }
 
     return (
-        <div className="questions w-full h-full bg-white rounded-t-xl mt-10 p-10">
+        <div className="questions w-full h-full bg-white rounded-t-xl mt-10 p-10" onKeyDown={handleKeyDown} tabIndex="0">
             <Questions onChecked={onChecked} />
             <div className="flex justify-center mt-6">
                 <button className="btn next bg-red-500 text-white py-2 px-10 rounded-full text-lg font-bold" onClick={onNext}>Next</button>

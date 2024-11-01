@@ -11,6 +11,11 @@ export default function Questions({ onChecked }) {
     const [{ isLoading, apiData, serverError }] = useFetchQuestion()
 
     useEffect(() => {
+        // Reset selected option when a new question is displayed
+        setChecked(undefined)
+    }, [trace])
+
+    useEffect(() => {
         dispatch(updateResult({ trace, checked }))
     }, [checked])
 
@@ -33,6 +38,7 @@ export default function Questions({ onChecked }) {
                             type="radio"
                             name="options"
                             id={`q${i}-option`}
+                            checked={checked === i}
                             onChange={() => onSelect(i)}
                             className="mr-2"
                         />
