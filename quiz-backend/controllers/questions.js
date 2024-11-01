@@ -21,7 +21,6 @@ export async function addQuestions(req, res) {
     }
 }
 
-// POST score calculation without storing in the database
 export async function saveScore(req, res) {
     try {
         const { userAnswers } = req.body;
@@ -33,16 +32,29 @@ export async function saveScore(req, res) {
 
         const correctAnswers = questions.answers;
 
-        // Calculate score
+        // Calculate total points and initialize attempts and earned points
         const totalPoints = correctAnswers.length * 10;
         const attempts = userAnswers.filter(answer => answer !== undefined).length;
-        const earnedPoints = userAnswers
-            .map((answer, index) => answer === correctAnswers[index])
-            .filter(correct => correct)
-            .length * 10;
+
+        // Calculate earned points by comparing user answers with correct answers
+        const earnedPoints = userAnswers.reduce((sum, answer, index) => {
+            const correctAnswer = correctAnswers[index];
+            
+            // Ensure both answer and correctAnswer are arrays
+            const normalizedUserAnswer = Array.isArray(answer) ? answer : [answer];
+            const normalizedCorrectAnswer = Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer];
+
+            // Sort and compare as strings to ensure they match regardless of order
+            const isCorrect = normalizedUserAnswer.sort().join(',') === normalizedCorrectAnswer.sort().join(',');
+
+            // Add points if the answer is correct
+            return isCorrect ? sum + 10 : sum;
+        }, 0);
+
+        // Determine pass/fail status
         const achieved = earnedPoints >= totalPoints * 0.5 ? "Passed" : "Failed";
 
-        // Send score calculation back to the frontend
+        // Send the calculated score back to the frontend
         res.json({
             totalPoints,
             attempts,

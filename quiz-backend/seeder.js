@@ -51,8 +51,29 @@ const questionsData = [
             "npx start react-app"
         ],
     },
+    {
+        question: "Which of the following are popular JavaScript frameworks/libraries?\n(Multiple options can be selected)",
+        options: [
+            "React",
+            "Vue",
+            "Angular",
+            "Django"
+        ],
+        multipleCorrect: true
+    },
+    {
+        question: "Identify this JavaScript logo.",
+        options: [
+            "React",
+            "JavaScript",
+            "Node.js",
+            "TypeScript"
+        ],
+        image: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" // Replace with actual path or URL
+    },
 ];
-const answersData = [0, 1, 0, 0, 1]; // Answer indices for each question
+
+const answersData = [0, 1, 0, 0, 1, [0, 1, 2], 1, 1, 0]; // Answer indices for each question, with array for multiple correct answers
 
 // Connect to MongoDB and insert data
 async function seedQuestions() {
