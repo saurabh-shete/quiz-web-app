@@ -7,6 +7,6 @@ const router = Router();
 router.route("/questions").get(controller.getQuestions).post(controller.addQuestions);
 
 // Routes for scores
-router.route("/score").get(controller.getScore).post(controller.saveScore);
+router.route("/score").post(controller.saveScore);
 
 export default router;
