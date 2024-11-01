@@ -1,8 +1,102 @@
-# React + Vite
+# Quiz Application Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of the Quiz Application, built using **React**. It provides an interactive user interface for taking quizzes, submitting answers, and displaying the user's score.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Environment Variables](#environment-variables)
+- [Available Scripts](#available-scripts)
+- [Folder Structure](#folder-structure)
+- [Features](#features)
+- [License](#license)
+
+---
+
+## Requirements
+
+- **Node.js** (v14 or higher)
+
+---
+
+## Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/saurabh-shete/quiz-web-app
+    cd quiz-frontend
+    ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Set up your environment variables (see below).
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```plaintext
+VITE_SERVER_HOSTNAME=<backend-server-url>
+```
+
+- `VITE_SERVER_HOSTNAME`: The URL of the backend server to connect to (e.g., `http://localhost:8080`).
+
+---
+
+## Available Scripts
+
+- **Start the development server**:
+    ```bash
+    npm start
+    ```
+- **Build for production**:
+    ```bash
+    npm run build
+    ```
+- **Run tests**:
+    ```bash
+    npm test
+    ```
+
+---
+
+## Folder Structure
+
+```plaintext
+frontend
+├── public
+│   └── index.html           # HTML template
+├── src
+│   ├── components           # Reusable UI components
+│   ├── hooks                # Custom hooks for state management
+│   ├── redux                # State management using Redux
+│   ├── App.js               # Main app component
+│   ├── index.js             # Entry point for React
+│   └── assets               # Images and other static assets
+├── .env                     # Environment variables
+└── README.md                # Documentation file
+```
+
+---
+
+## Features
+
+- **Responsive Design**: The quiz app works seamlessly on both mobile and desktop devices.
+- **Single and Multiple Correct Answers**: Questions can have either single or multiple correct answers, with appropriate user feedback.
+- **Progress Tracking**: Users can see their progress throughout the quiz.
+- **Interactive Scorecard**: The result page displays the user's score, correct/incorrect answers, and a visual representation of the result.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
