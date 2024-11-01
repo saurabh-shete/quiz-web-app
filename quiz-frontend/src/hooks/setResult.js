@@ -21,6 +21,8 @@ export const updateResult = (index) => async (dispatch) => {
 
 export const fetchScore = async (userAnswers) => {
     try {
+        console.log("userAnswers", userAnswers);
+        
         const response = await axios.post(`${import.meta.env.VITE_SERVER_HOSTNAME}/api/score`, {
             userAnswers
         });

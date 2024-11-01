@@ -38,11 +38,8 @@ export default function Quiz() {
     }
     
     return (
-        <div className="questions w-full h-full bg-white rounded-t-xl mt-10 p-10" onKeyDown={handleKeyDown} tabIndex="0">
-            <Questions onChecked={onChecked} />
-            <div className="flex justify-center mt-6">
-                <button className="btn next bg-red-500 text-white py-2 px-10 rounded-full text-lg font-bold" onClick={onNext}>Next</button>
-            </div>
+        <div className="w-full h-full" onKeyDown={handleKeyDown} tabIndex="0">
+            <Questions onChecked={onChecked} onNext={onNext} />
         </div>
     )
 }
