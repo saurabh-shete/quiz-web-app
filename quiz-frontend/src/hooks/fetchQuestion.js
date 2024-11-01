@@ -5,22 +5,48 @@ import * as Action from '../redux/reducer/question'
 
 export const useFetchQuestion = () => {
     const dispatch = useDispatch()
-    const [getData, setGetData] = useState({ isLoading: false, apiData: [], serverError: null })
+    const [getData, setGetData] = useState({
+        isLoading: false,
+        apiData: [],
+        serverError: null,
+    })
 
     useEffect(() => {
         setGetData(prev => ({ ...prev, isLoading: true }))
 
-        (async () => {
+        // Fetch questions asynchronously
+        ;(async () => {
             try {
-                const [{ questions, answers }] = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
-                if (questions.length > 0) {
-                    setGetData(prev => ({ ...prev, isLoading: false, apiData: questions }))
-                    dispatch(Action.startExamAction({ question: questions, answers }))
+                const response = await getServerData(
+                    `${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`,
+                    data => data
+                )
+
+                const { questions, answers } = response[0] || {}
+
+                if (questions && questions.length > 0) {
+                    setGetData(prev => ({
+                        ...prev,
+                        isLoading: false,
+                        apiData: questions,
+                    }))
+
+                    dispatch(
+                        Action.startExamAction({
+                            question: questions,
+                            answers,
+                        })
+                    )
                 } else {
                     throw new Error("No Question Available")
                 }
             } catch (error) {
-                setGetData(prev => ({ ...prev, isLoading: false, serverError: error }))
+                setGetData(prev => ({
+                    ...prev,
+                    isLoading: false,
+                    serverError: error.message || error,
+                }))
+                console.error("Error fetching questions:", error)
             }
         })()
     }, [dispatch])
