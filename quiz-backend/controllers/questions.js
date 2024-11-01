@@ -21,16 +21,16 @@ export async function addQuestions(req, res) {
     }
 }
 
-// POST score without storing in the database
+// POST score calculation without storing in the database
 export async function saveScore(req, res) {
     try {
-        const { username, userAnswers } = req.body;
-        if (!username || !userAnswers) throw new Error("Invalid data provided");
+        const { userAnswers } = req.body;
+        if (!userAnswers) throw new Error("Invalid data provided");
 
         // Fetch the correct answers from the database
         const questions = await Questions.findOne();
         if (!questions) throw new Error("No questions found");
-        
+
         const correctAnswers = questions.answers;
 
         // Calculate score
