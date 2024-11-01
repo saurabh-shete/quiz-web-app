@@ -83,7 +83,7 @@ export default function Questions({ onChecked, onNext }) {
             <img
               src={questions.image}
               alt="Question related visual"
-              className="w-full max-w-md rounded-lg shadow-md mx-auto"
+              className="w-48 h-48 max-w-md rounded-lg shadow-md mx-auto"
             />
           </div>
         )}
