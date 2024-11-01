@@ -1,4 +1,4 @@
-import * as Action from '../redux/result_reducer'
+import * as Action from '../redux/reducer/result'
 
 export const PushAnswer = (result) => async (dispatch) => {
     try {

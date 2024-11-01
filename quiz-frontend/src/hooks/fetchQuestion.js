@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { getServerData } from "../helper/helper"
-import * as Action from '../redux/question_reducer'
+import * as Action from '../redux/reducer/question'
 
 export const useFetchQuestion = () => {
     const dispatch = useDispatch()
