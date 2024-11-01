@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Main from './components/Main'
 import Quiz from './components/Quiz'
 import Result from './components/Result'
-import { CheckUserExist } from './helper/helper'
+import { CheckUserExist } from './helper/helper.jsx'
 
 /** Define routes */
 const router = createBrowserRouter([

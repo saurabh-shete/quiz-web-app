@@ -10,7 +10,7 @@ export default function Quiz() {
     const result = useSelector(state => state.result.result)
     const { queue, trace } = useSelector(state => state.questions)
     const dispatch = useDispatch()
-
+    
     function onNext() {
         if (trace < queue.length) {
             dispatch(MoveNextQuestion())
@@ -30,8 +30,9 @@ export default function Quiz() {
     function onChecked(check) {
         setChecked(check)
     }
-
-    if (result.length && result.length >= queue.length) {
+    console.log(result.length, queue.length);
+    
+    if (queue.length && result.length >= queue.length) {
         return <Navigate to={'/result'} replace={true} />
     }
 

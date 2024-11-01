@@ -12,7 +12,9 @@ const questionSlice = createSlice({
             const { question, answers } = action.payload
             state.queue = question
             state.answers = answers
+            state.trace = 0
         },
+        
         moveNextAction: (state) => {
             state.trace += 1
         },
