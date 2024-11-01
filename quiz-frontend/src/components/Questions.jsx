@@ -8,21 +8,19 @@ export default function Questions({ onChecked }) {
     const { trace } = useSelector(state => state.questions)
     const questions = useSelector(state => state.questions.queue[state.questions.trace])
     const dispatch = useDispatch()
-    const [{ isLoading, apiData, serverError }] = useFetchQuestion()
+    const [{ isLoading, serverError }] = useFetchQuestion()
 
     useEffect(() => {
-        // Reset selected option when a new question is displayed
         setChecked(undefined)
     }, [trace])
 
     useEffect(() => {
         dispatch(updateResult({ trace, checked }))
-    }, [checked])
+    }, [checked, dispatch])
 
     function onSelect(i) {
         onChecked(i)
         setChecked(i)
-        dispatch(updateResult({ trace, checked }))
     }
 
     if (isLoading) return <h3 className="text-gray-700">Loading...</h3>

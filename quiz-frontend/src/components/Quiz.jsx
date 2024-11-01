@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Questions from './Questions'
-import { MoveNextQuestion, MovePrevQuestion } from '../hooks/fetchQuestion'
+import { MoveNextQuestion } from '../hooks/fetchQuestion'
 import { PushAnswer } from '../hooks/setResult'
 import { useSelector, useDispatch } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Quiz() {
     const [check, setChecked] = useState(undefined)
     const result = useSelector(state => state.result.result)
     const { queue, trace } = useSelector(state => state.questions)
     const dispatch = useDispatch()
+    const navigate = useNavigate() // Ensure navigate is correctly imported and used
     
     function onNext() {
-        if (trace < queue.length) {
+        if (trace < queue.length - 1) {  // Only navigate if `trace` is less than the last question index
             dispatch(MoveNextQuestion())
             if (result.length <= trace) {
                 dispatch(PushAnswer(check))
             }
+        } else {
+            // Push the final answer, then navigate to results
+            dispatch(PushAnswer(check))
+            navigate("/result") // Navigate to results page
         }
-        setChecked(undefined) // Reset selected option
-    }
-
-    function onPrev() {
-        if (trace > 0) {
-            dispatch(MovePrevQuestion())
-        }
+        setChecked(undefined)
     }
 
     function onChecked(check) {
@@ -37,13 +36,7 @@ export default function Quiz() {
             onNext()
         }
     }
-
-    console.log(result.length, queue.length)
     
-    if (queue.length && result.length >= queue.length) {
-        return <Navigate to={'/result'} replace={true} />
-    }
-
     return (
         <div className="questions w-full h-full bg-white rounded-t-xl mt-10 p-10" onKeyDown={handleKeyDown} tabIndex="0">
             <Questions onChecked={onChecked} />
