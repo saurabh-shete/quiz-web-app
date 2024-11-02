@@ -41,11 +41,11 @@ export async function saveScore(req, res) {
             const correctAnswer = correctAnswers[index];
             
             // Ensure both answer and correctAnswer are arrays
-            const normalizedUserAnswer = Array.isArray(answer) ? answer : [answer];
-            const normalizedCorrectAnswer = Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer];
+            const normalizedUserAnswer = Array.isArray(answer) ? answer.sort() : [answer];
+            const normalizedCorrectAnswer = Array.isArray(correctAnswer) ? correctAnswer.sort() : [correctAnswer];
 
-            // Sort and compare as strings to ensure they match regardless of order
-            const isCorrect = normalizedUserAnswer.sort().join(',') === normalizedCorrectAnswer.sort().join(',');
+            // Compare arrays as strings to determine if answers match
+            const isCorrect = JSON.stringify(normalizedUserAnswer) === JSON.stringify(normalizedCorrectAnswer);
 
             // Add points if the answer is correct
             return isCorrect ? sum + 10 : sum;

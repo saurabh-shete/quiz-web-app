@@ -25,13 +25,13 @@ export default function Result() {
   }
 
   if (!scoreData) return <p>Loading...</p>;
-console.log(scoreData);
+  
+  console.log(scoreData);
 
-  // Ensure values are numbers and default to 0 if undefined
   const totalPoints = scoreData?.totalPoints || 1; // Avoid division by zero
   const earnedPoints = scoreData?.earnedPoints || 0;
-  const correctAnswers = Math.round(earnedPoints / 10); // Adjusted to match points logic
-  const incorrectAnswers = Math.max(0, 7 - correctAnswers); // Prevent negative values if needed
+  const correctAnswers = Math.floor(earnedPoints / 10);
+  const incorrectAnswers = 7 - correctAnswers; // Assuming 7 questions in total
   const percentage = Math.round((earnedPoints / totalPoints) * 100);
 
   // Convert percentage to degrees for the pointer rotation
