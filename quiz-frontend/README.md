@@ -2,6 +2,8 @@
 
 This is the frontend of the Quiz Application, built using **React**. It provides an interactive user interface for taking quizzes, submitting answers, and displaying the user's score.
 
+Hosted Application: [Quiz Web App](https://quiz-web-app-la3m.onrender.com)
+
 ---
 
 ## Table of Contents
@@ -26,8 +28,8 @@ This is the frontend of the Quiz Application, built using **React**. It provides
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/saurabh-shete/quiz-web-app
-    cd quiz-frontend
+    git clone <repository-url>
+    cd frontend
     ```
 
 2. Install dependencies:
@@ -44,10 +46,10 @@ This is the frontend of the Quiz Application, built using **React**. It provides
 Create a `.env` file in the root directory with the following variables:
 
 ```plaintext
-VITE_SERVER_HOSTNAME=<backend-server-url>
+REACT_APP_BACKEND_URL=<backend-server-url>
 ```
 
-- `VITE_SERVER_HOSTNAME`: The URL of the backend server to connect to (e.g., `http://localhost:8080`).
+- `REACT_APP_BACKEND_URL`: The URL of the backend server to connect to (e.g., `http://localhost:5000`).
 
 ---
 
@@ -77,6 +79,7 @@ frontend
 ├── src
 │   ├── components           # Reusable UI components
 │   ├── hooks                # Custom hooks for state management
+│   ├── pages                # Application pages (e.g., Quiz, Result)
 │   ├── redux                # State management using Redux
 │   ├── App.js               # Main app component
 │   ├── index.js             # Entry point for React
