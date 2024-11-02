@@ -42,9 +42,9 @@ console.log(scoreData);
       {/* Confetti Background */}
       <div className="relative w-full flex justify-center items-center rounded-b-3xl">
         <img
-          src="src/assets/image.png"
+          src="src/assets/image.svg"
           alt="confetti background"
-          className="-translate-y-14 w-screen lg:h-32 lg:object-fill"
+          className="-translate-y-14 w-screen lg:h-28 lg:object-fill"
         />
       </div>
 
@@ -58,14 +58,14 @@ console.log(scoreData);
         <div className="relative flex items-center justify-center mb-6">
           {/* Background Half-Circle */}
           <img
-            src="src/assets/second.png" // Use your background gauge image here
+            src="src/assets/second.svg" // Use your background gauge image here
             alt="background gauge"
             className="w-72 h-56"
           />
 
           {/* Gradient Arc */}
           <img
-            src="src/assets/third.png" // Use your gradient arc image here
+            src="src/assets/third.svg" // Use your gradient arc image here
             alt="gradient gauge"
             className="absolute w-full h-40 top-0 object-contain"
           />

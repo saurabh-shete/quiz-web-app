@@ -13,7 +13,7 @@ export default function Main() {
             
             {/* Logo */}
             <img
-                src="src/assets/upraised-logo.png" // Replace with the actual path to the logo
+                src="src/assets/upraised-logo.svg" // Replace with the actual path to the logo
                 alt="Upraised Logo"
                 className="w-32 h-16 mb-4 sm:h-20 lg:w-full lg:h-24 object-contain"
             />

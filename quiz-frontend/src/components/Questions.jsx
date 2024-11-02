@@ -45,9 +45,9 @@ export default function Questions({ onChecked, onNext }) {
       {/* Confetti Background and Progress Indicator */}
       <div className="relative w-full flex justify-center items-center rounded-b-3xl">
         <img
-          src="src/assets/image.png"
+          src="src/assets/image.svg"
           alt="confetti background"
-          className="-translate-y-14 w-screen lg:h-32 lg:object-fill"
+          className="-translate-y-14 w-screen lg:h-28 lg:object-cover"
         />
 
         {/* Progress Circle */}
